@@ -1,0 +1,63 @@
+﻿@page "/recipes"
+@using CookingRecipes.Models
+
+@{
+    List<Recipe> recipes = GetRecipes();
+    var snacks = from recipe in recipes where recipe.Category == "Snacks" select recipe;
+    var desserts = from recipe in recipes where recipe.Category == "Desserts" select recipe;
+    List<Recipe> GetRecipes()
+    {
+        List<Recipe> recipes = new List<Recipe>();
+        Recipe recipe1 = new Recipe("Samosa", "These yummy samosas look like they were made by a professional, but you can master it too.", "https://tse2.mm.bing.net/th?id=OIP.fPIjhcMS-tE0mLIAMgRD_AHaE8&pid=Api&P=0&w=254&h=171", "https://www.indianhealthyrecipes.com/samosa-recipe-make-samosa/", "Snacks");
+        recipes.Add(recipe1);
+        Recipe recipe2 = new Recipe("Gulab Jamun", "These sugar syrup soaked sweets are so juicy, and you can have them homemade!", "https://www.indianhealthyrecipes.com/wp-content/uploads/2021/09/gulab-jamun.jpg", "https://www.indianhealthyrecipes.com/gulab-jamun-recipe-using-milk-powder/", "Desserts");
+        recipes.Add(recipe2);
+        Recipe recipe3 = new Recipe("Rasmalai", "These paneer made sweets are surely gonna be your favorite, especially if you make them at home!", "https://www.indianhealthyrecipes.com/wp-content/uploads/2013/10/rasmalai-1.jpg", "https://www.indianhealthyrecipes.com/rasmalai-recipe-easy-rasmalai-in-10-mins-diwali-recipes/", "Desserts");
+        recipes.Add(recipe3);
+        Recipe recipe4 = new Recipe("Mullu Murukku", "These star-designed snacks are surely gonna make a great contribution to your food table!", "http://2.bp.blogspot.com/-a0jmo902yPA/TqJl-k7LGCI/AAAAAAAABuQ/744ANrz60Lc/s1600/Mullu+Murukku.jpg", "https://m.youtube.com/watch?v=anqLxqhmJ20&feature=emb_logo", "Snacks");
+        recipes.Add(recipe4);
+        return recipes;
+    }
+}
+
+<div style="text-align: center;">
+    <h1 class="display-4">Recipes</h1>
+    <hr />
+    <br />
+    <h1 class="text-secondary">Snacks</h1>
+    <hr />
+    <br />
+    <div class="card-columns">
+        @foreach (var recipe in snacks)
+        {
+            <div class="card" style="width: 18rem;">
+                <img src="@recipe.ImageUrl" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@recipe.Name</h5>
+                    <p class="card-text description">@recipe.Description</p>
+                    <a href="@recipe.RecipeUrl" class="btn btn-primary" target="_blank">Recipe Link</a>
+                </div>
+            </div>
+        }
+    </div>
+
+    <h1 class="text-secondary">Desserts</h1>
+    <hr />
+    <br />
+    <div class="card-columns">
+        @foreach (var recipe in desserts)
+        {
+            <div class="card" style="width: 18rem;">
+                <img src="@recipe.ImageUrl" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@recipe.Name</h5>
+                    <p class="card-text description">@recipe.Description</p>
+                    <a href="@recipe.RecipeUrl" class="btn btn-primary" target="_blank">Recipe Link</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
